@@ -8,3 +8,19 @@ variables:
 
 steps:
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
+    repository: 'crud'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'proyecto-aks'
+    namespace: 'default'
+    command: '--record'
+    arguments: 'deployment.apps/crud-deployment set image deployment.v1.apps/crud-deployment crud=crud:$(tag)'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
