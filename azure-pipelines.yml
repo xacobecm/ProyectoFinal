@@ -31,6 +31,15 @@ steps:
   inputs:
     connectionType: 'Kubernetes Service Connection'
     kubernetesServiceEndpoint: 'proyecto-aks'
+    command: 'create'
+    arguments: 'secret docker-registry regcred --docker-server=xac0.xyz:5000 --docker-username=xac0 --docker-password=Coremain1234! --docker-email=xacobecm@hotmail.com'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'proyecto-aks'
     command: '--record'
     arguments: 'deployment.apps/crud-deployment set image deployment.v1.apps/crud-deployment crud=xac0.xyz:5000/crud:$(tag)'
     secretType: 'dockerRegistry'
