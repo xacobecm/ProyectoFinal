@@ -31,7 +31,6 @@ steps:
   inputs:
     connectionType: 'Kubernetes Service Connection'
     kubernetesServiceEndpoint: 'proyecto-aks'
-    namespace: 'default'
     command: '--record'
     arguments: 'deployment.apps/crud-deployment set image deployment.v1.apps/crud-deployment crud=crud:$(tag)'
     secretType: 'dockerRegistry'
