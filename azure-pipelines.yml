@@ -11,9 +11,20 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'proyecto-registry'
+    command: 'login'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
     repository: 'crud'
-    command: 'buildAndPush'
+    command: 'build'
     Dockerfile: '**/Dockerfile'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
+    repository: 'crud'
+    command: 'push'
 
 - task: Kubernetes@1
   inputs:
