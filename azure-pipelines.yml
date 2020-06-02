@@ -27,14 +27,7 @@ steps:
     repository: 'crud'
     command: 'push'
 
-- task: Kubernetes@1
-  inputs:
-    connectionType: 'Kubernetes Service Connection'
-    kubernetesServiceEndpoint: 'proyecto-aks'
-    command: 'create'
-    arguments: 'secret docker-registry regcred --docker-server=xac0.xyz:5000 --docker-username=xac0 --docker-password=Coremain1234! --docker-email=xacobecm@hotmail.com'
-    secretType: 'dockerRegistry'
-    containerRegistryType: 'Azure Container Registry'
+# CREAR MANUALMENTE UN SECRETO PARA LOGEARSE EN EL REGISTRY. https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
 - task: Kubernetes@1
   inputs:
