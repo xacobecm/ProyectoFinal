@@ -18,7 +18,8 @@ steps:
     containerRegistry: 'proyecto-registry'
     repository: 'crud'
     command: 'build'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'Dockerfile'
+    buildContext: 
 
 - task: Docker@2
   inputs:
