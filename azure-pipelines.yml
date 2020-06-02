@@ -1,0 +1,10 @@
+trigger:
+- master
+
+pool: xac0
+
+variables:
+  tag: '$(Build.BuildId)'
+
+steps:
+
