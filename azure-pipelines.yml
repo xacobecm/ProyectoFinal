@@ -1,0 +1,39 @@
+trigger:
+- master
+
+pool: xac0
+
+variables:
+  tag: '$(Build.BuildId)'
+
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
+    command: 'login'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
+    repository: 'crud'
+    command: 'build'
+    Dockerfile: 'Dockerfile'
+    buildContext: 
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'proyecto-registry'
+    repository: 'crud'
+    command: 'push'
+
+# CREAR MANUALMENTE UN SECRETO PARA LOGEARSE EN EL REGISTRY. https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+- task: Kubernetes@1
+  inputs:
+    connectionType: 'Kubernetes Service Connection'
+    kubernetesServiceEndpoint: 'proyecto-aks'
+    command: '--record'
+    arguments: 'deployment.apps/crud-deployment set image deployment.v1.apps/crud-deployment crud=xac0.xyz:5000/crud:$(tag)'
+    secretType: 'dockerRegistry'
+    containerRegistryType: 'Azure Container Registry'
