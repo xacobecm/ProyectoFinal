@@ -1,0 +1,4 @@
+docker-compose.yaml
+terraform/*
+vm/*
+README.md

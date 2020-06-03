@@ -42,8 +42,8 @@ resource "azurerm_linux_virtual_machine" "vmreg" {
 	resource_group_name = azurerm_resource_group.rg.name
 	location = azurerm_resource_group.rg.location
 	size = "Standard_F2"
-	admin_username = "xac0"
-	admin_password = "Coremain1234!"
+	admin_username = var.vm-user
+	admin_password = var.vm-pass
 	disable_password_authentication = false
 	network_interface_ids = [
 		azurerm_network_interface.interfazreg.id

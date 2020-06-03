@@ -5,7 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://mongo-server/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://xac0.xyz/mern-crud', { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful'))
   .catch((err) => console.error(err));
 

@@ -42,8 +42,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
 	resource_group_name = azurerm_resource_group.rg.name
 	location = azurerm_resource_group.rg.location
 	size = "Standard_F2"
-	admin_username = "xac0"
-	admin_password = "Coremain1234!"
+	admin_username = var.vm-user
+	admin_password = var.vm-pass
 	disable_password_authentication = false
 	network_interface_ids = [
 		azurerm_network_interface.interfaz.id
@@ -85,7 +85,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
 			"sudo usermod -aG docker xac0",
 			"cd agent-files",
 			"sudo docker build -t azure-agent:latest .",
-			"sudo docker run -e AZP_URL=${var.azp-url} -e AZP_TOKEN=${var.azp-token} -e AZP_AGENT_NAME=tf-worker -e AZP_POOL=xac0 azure-agent:latest",
+			"sudo docker run -v /var/run/docker.sock:/var/run/docker.sock -e AZP_URL=${var.azp-url} -e AZP_TOKEN=${var.azp-token} -e AZP_AGENT_NAME=tf-worker -e AZP_POOL=xac0 azure-agent:latest",
 		]
 
 		connection {

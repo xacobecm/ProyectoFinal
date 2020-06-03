@@ -7,6 +7,10 @@ provider "azurerm" {
         tenant_id = var.ten-id
 }
 
+provider "kubernetes" {
+	# Esto carga la config desde ~/.kube/config
+}
+
 # Grupo de recursos
 resource "azurerm_resource_group" "rg" {
         name = "proyecto-ciclo"
