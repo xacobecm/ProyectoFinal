@@ -27,3 +27,13 @@ variable "azp-token" {
     type = string
     default = ""
 }
+
+variable "vm-user" {
+    type = string
+    default = ""
+}
+
+variable "vm-pass" {
+    type = string
+    default = ""
+}
