@@ -52,7 +52,3 @@ resource "kubernetes_service" "crud" {
     type = "LoadBalancer"
   }
 }
-
-resource "kubernetes_deployment" "mongo" {
-
-}

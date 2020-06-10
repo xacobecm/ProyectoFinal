@@ -81,4 +81,8 @@ services:
     links:
       - ui
       - registry
-
+  mongo:
+      image: mongo:latest
+      restart: always
+      ports:
+          - "27017:27017"
